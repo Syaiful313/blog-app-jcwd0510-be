@@ -1,6 +1,7 @@
 import { Prisma } from "@prisma/client";
-import { prisma } from "../../lib/prisma";
 import { paginationQueriesParams } from "../../types/pagination";
+import { prisma } from "../../lib/prisma";
+
 
 interface GetBlogQuery extends paginationQueriesParams {
   search: string;
@@ -14,8 +15,8 @@ export const getBlogsService = async (query: GetBlogQuery) => {
 
     if (search) {
       whereClause.OR = [
-        { category: { contains: search } },
-        { title: { contains: search } },
+        { category: { contains: search,mode:'insensitive' } },
+        { title: { contains: search,mode:'insensitive' } },
       ];
     }
 
@@ -28,7 +29,7 @@ export const getBlogsService = async (query: GetBlogQuery) => {
       },
     });
 
-    const count = await prisma.blog.count();
+    const count = await prisma.blog.count({where: whereClause});
     return {
       data: blogs,
       meta: { page, take, total: count },
