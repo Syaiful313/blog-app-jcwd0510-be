@@ -6,7 +6,7 @@ export const registerService = async (body: User) => {
   try {
     const { name, email, password } = body;
     const existingUser = await prisma.user.findFirst({
-      where: { email },
+      where: { email }, 
     });
 
     if (existingUser) {
