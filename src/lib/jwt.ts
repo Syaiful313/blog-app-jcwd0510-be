@@ -17,7 +17,7 @@ export const verifyToken = (
     return;
   }
 
-  verify(token, JWT_SECRET_FORGOT_PASSWORD!, (err, payload) => {
+  verify(token, JWT_SECRET!, (err, payload) => {
     if (err) {
       if (err instanceof TokenExpiredError) {
         res.status(401).send({ message: "Token expired" });
@@ -46,7 +46,7 @@ export const verifyTokenReset = (
     return;
   }
 
-  verify(token, JWT_SECRET!, (err, payload) => {
+  verify(token, JWT_SECRET_FORGOT_PASSWORD!, (err, payload) => {
     if (err) {
       if (err instanceof TokenExpiredError) {
         res.status(401).send({ message: "Token expired" });

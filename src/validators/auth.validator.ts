@@ -11,7 +11,7 @@ export const validateRegister = [
 
     if (!errors.isEmpty()) {
       res.status(400).send({ message: errors.array()[0].msg });
-      return
+      return;
     }
 
     next();
@@ -26,12 +26,12 @@ export const validateLogin = [
 
     if (!errors.isEmpty()) {
       res.status(400).send({ message: errors.array()[0].msg });
-      return
+      return;
     }
 
     next();
   },
-]; 
+];
 export const validateForgotPassword = [
   body("email").notEmpty().withMessage("Email is required").isEmail(),
 
@@ -40,12 +40,12 @@ export const validateForgotPassword = [
 
     if (!errors.isEmpty()) {
       res.status(400).send({ message: errors.array()[0].msg });
-      return
+      return;
     }
 
     next();
   },
-]; 
+];
 export const validateResetPassword = [
   body("password").notEmpty().withMessage("Password is required"),
 
@@ -54,9 +54,9 @@ export const validateResetPassword = [
 
     if (!errors.isEmpty()) {
       res.status(400).send({ message: errors.array()[0].msg });
-      return
+      return;
     }
 
     next();
   },
-]; 
+];
